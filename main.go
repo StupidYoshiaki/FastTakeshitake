@@ -16,11 +16,6 @@ import (
 )
 
 func init() {
-	// err := godotenv.Load()
-	// if err != nil {
-	// 	log.Fatal("Error loading .env file")
-	// }
-
 	// 画像をダウンロード
 	downloader.Init()
 	if err := downloader.DownloadFiles(); err != nil {
@@ -72,8 +67,9 @@ func startPingRoutine() {
 	ticker := time.NewTicker(interval)
 	defer ticker.Stop()
 
-	port := os.Getenv("PORT")
-	url := "http://localhost:" + port + "/"
+	url := "http://exotic-eleanora-takeshitake-d6e5d841.koyeb.app/"
+	// port := os.Getenv("PORT")
+	// url := "http://localhost:" + port + "/"
 
 	client := http.Client{
 		Timeout: 10 * time.Second,

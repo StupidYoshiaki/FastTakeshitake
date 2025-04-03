@@ -20,11 +20,6 @@ var (
 )
 
 func Init() {
-	// err := godotenv.Load()
-	// if err != nil {
-	// 	log.Fatal("Error loading .env file")
-	// }
-
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		Config: aws.Config{
 			CredentialsChainVerboseErrors: aws.Bool(true),
@@ -56,7 +51,6 @@ func DownloadFiles() error {
 				log.Printf("Failed to download file %s: %v", key, err)
 				return false
 			}
-			// key = strings.SplitAfter(baseName, "/")[1]
 			S3FilePaths[baseName] = localPath
 
 			// cnt++ // test
