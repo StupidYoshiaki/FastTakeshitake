@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/bwmarrin/discordgo"
 
@@ -57,8 +58,35 @@ func main() {
 		}
 	}()
 
+	// 定期的に自分自身に ping リクエストを送る
+	go startPingRoutine()
+
 	fmt.Println("Bot is now running. Press CTRL+C to exit.")
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
 	<-sc
+}
+
+func startPingRoutine() {
+	interval := 5 * time.Minute
+	ticker := time.NewTicker(interval)
+	defer ticker.Stop()
+
+	port := os.Getenv("PORT")
+	url := "http://localhost:" + port + "/"
+
+	client := http.Client{
+		Timeout: 10 * time.Second,
+	}
+
+	for {
+		<-ticker.C
+		resp, err := client.Get(url)
+		if err != nil {
+			log.Printf("Ping failed: %v", err)
+			continue
+		}
+		resp.Body.Close()
+		log.Printf("Pinged %s successfully", url)
+	}
 }
