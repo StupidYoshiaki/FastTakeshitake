@@ -23,8 +23,9 @@ func MessageCreateHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		k := key
 		wg.Add(1)
 		go func(k string) {
+			name := strings.ReplaceAll(k, ".png", "")
 			defer wg.Done()
-			if message == strings.ReplaceAll(k, ".png", "") {
+			if strings.Contains(name, message) {
 				select {
 				case found <- k:
 				default:
