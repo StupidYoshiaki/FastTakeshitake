@@ -45,7 +45,7 @@ func DownloadFiles() error {
 	}
 
 	err := s3Client.ListObjectsV2Pages(input, func(page *s3.ListObjectsV2Output, lastPage bool) bool {
-		cnt := 0 // test
+		// cnt := 0 // test
 
 		for _, obj := range page.Contents {
 			key := *obj.Key
@@ -60,10 +60,10 @@ func DownloadFiles() error {
 			// key = strings.SplitAfter(baseName, "/")[1]
 			S3FilePaths[baseName] = localPath
 
-			cnt++ // test
-			if cnt > 2 {
-				break
-			}
+			// cnt++ // test
+			// if cnt > 2 {
+			// 	break
+			// }
 		}
 		return true
 	})
