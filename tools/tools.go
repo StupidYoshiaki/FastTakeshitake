@@ -8,7 +8,7 @@ import (
 )
 
 func StartPingRoutine() {
-	interval := 1 * time.Minute
+	interval := 10 * time.Minute
 	ticker := time.NewTicker(interval)
 	defer ticker.Stop()
 
