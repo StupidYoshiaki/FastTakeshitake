@@ -15,7 +15,7 @@ func min3(a, b, c int) int {
 }
 
 // 2つの文字列 s1, s2 のレーベンシュタイン距離を返す
-func Levenshtein(s1, s2 string) int {
+func levenshtein(s1, s2 string) int {
 	m := len(s1)
 	n := len(s2)
 
@@ -61,7 +61,7 @@ func Levenshtein(s1, s2 string) int {
 
 // レーベンシュタイン距離に基づいた類似度を 0.0～1.0 の範囲で返す
 func LevenshteinSimilarity(s1, s2 string) float64 {
-	distance := Levenshtein(s1, s2)
+	distance := levenshtein(s1, s2)
 	maxLen := mmax(len(s1), len(s2))
 	if maxLen == 0 {
 		return 1.0
