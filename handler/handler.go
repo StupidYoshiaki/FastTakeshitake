@@ -6,6 +6,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/StupidYoshiaki/FastTakeshitake/core"
 	"github.com/StupidYoshiaki/FastTakeshitake/downloader"
 	"github.com/bwmarrin/discordgo"
 )
@@ -25,7 +26,7 @@ func MessageCreateHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		go func(k string) {
 			name := strings.ReplaceAll(k, ".png", "")
 			defer wg.Done()
-			if strings.Contains(name, message) {
+			if core.LevenshteinSimilarity(message, name) > 0.8 {
 				select {
 				case found <- k:
 				default:
