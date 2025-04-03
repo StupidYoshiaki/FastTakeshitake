@@ -9,17 +9,16 @@ import (
 	"syscall"
 
 	"github.com/bwmarrin/discordgo"
-	"github.com/joho/godotenv"
 
 	"github.com/StupidYoshiaki/FastTakeshitake/downloader"
 	"github.com/StupidYoshiaki/FastTakeshitake/handler"
 )
 
 func init() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	log.Fatal("Error loading .env file")
+	// }
 
 	// 画像をダウンロード
 	downloader.Init()
