@@ -1,6 +1,5 @@
 package core
 
-// 3つの整数のうち、最小のものを返すヘルパー関数
 func min3(a, b, c int) int {
 	if a < b {
 		if a < c {
@@ -14,7 +13,7 @@ func min3(a, b, c int) int {
 	return c
 }
 
-// 2つの文字列 s1, s2 のレーベンシュタイン距離を返す
+// 2つの文字列 s1, s2 のレーベンシュタイン距離を計算
 func levenshtein(s1, s2 string) int {
 	m := len(s1)
 	n := len(s2)
@@ -59,7 +58,7 @@ func levenshtein(s1, s2 string) int {
 	return dp[m][n]
 }
 
-// レーベンシュタイン距離に基づいた類似度を 0.0～1.0 の範囲で返す
+// レーベンシュタイン距離に基づいた類似度
 func LevenshteinSimilarity(s1, s2 string) float64 {
 	distance := levenshtein(s1, s2)
 	maxLen := mmax(len(s1), len(s2))
